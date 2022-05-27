@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="botones">
+        <button onclick="adminClick()">ADMINISTRADOR</button>
+        <button onclick="clientClick()">CLIENTE</button>
+    </div>
+    <div id="cosasDeAdmin" style="display: none;">
+        <div id="menuLogin">
+            <input type="text" id="usuario" placeholder="Usuario">
+            <input type="password" id="contrasena" placeholder="Contraseña">
+            <div>
+                <span id="errorLogin" class="errorMsg" style="display: none;">Usuario y contraseña incorrectos</span>
+            </div>
+            <button onclick="loginClick()">INGRESAR</button>
+        </div>
+        <div id="menuAdmin" style="display: none;">
+            <ul>
+                <li>1- Mostrar productos</li>
+                <li>2- Añadir producto</li>
+            </ul>
+            <input type="text" id="opcionAdminElegida">
+            <button onclick="adminOpcionClick()">ELEGIR</button>
+        </div>
+        <div>
+            <ul id="lista" style="display: none;">
+
+            </ul>
+        </div>
+    </div>
+    <div id="menuCliente" style="display: none;">
+        <span>Cosas de cliente</span>
+    </div>
+</body>
+
+</html>

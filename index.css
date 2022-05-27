@@ -1,0 +1,12 @@
+
+#botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorMsg{
+    color:red;
+    font-weight: bold;
+}
