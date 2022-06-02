@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+.botonprendido {
+    color:blue;
+}
+.botonapagado{
+    color:red;    
+}
 .errorMsg{
     color:red;
     font-weight: bold;
