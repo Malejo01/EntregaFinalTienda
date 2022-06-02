@@ -16,6 +16,14 @@ let carrito = [
 ];
 
 //Clicks
+//boton admin
+let botonAdmin = document.getElementById("botonAdmin")
+botonAdmin.addEventListener ("click", () => adminClick ())
+
+//boton cliente
+let botonCliente = document.getElementById("botonCliente")
+botonCliente.addEventListener ("click", () => clienteClick ())
+
 function adminClick() {
     var divCliente = document.getElementById("menuCliente");
     divCliente.style.display = "none";
@@ -25,7 +33,7 @@ function adminClick() {
     divLogin.style.display = "block";
 }
 
-function clientClick() {
+function clienteClick() {
     //Buscar div menuLogin
     var divLogin = document.getElementById("cosasDeAdmin");
     //Ocultar div menuLogin
