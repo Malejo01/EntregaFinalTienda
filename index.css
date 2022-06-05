@@ -1,3 +1,21 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+img {
+    height: 10rem;
+    width: 10rem;
+}
+table {
+    width: 45%;
+    text-align: center;
+    margin-top: 60px;
+}
+
+thead{
+    background-color:darkgreen;
+    color: aliceblue;
+}
 
 #botones {
     display: flex;
@@ -15,4 +33,21 @@
 .errorMsg{
     color:red;
     font-weight: bold;
+}
+
+#container-radio{
+    display:flex; 
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+body {
+    background-color:bisque;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
 }

@@ -38,8 +38,35 @@
             </ul>
         </div>
     </div>
+
     <div id="menuCliente" style="display: none;">
-        <span>Cosas de cliente</span>
+        <h1>Menu para clientes</h1>
+        <div id="container-radio">
+         <label> 
+            <input type="radio" name="filtro" value="consola" class="radio">
+             <span>Consolas</span>
+             <input type="radio" name="filtro" value="joystick" class="radio">
+             <span>Joystick</span>
+             <input type="radio" name="filtro" value="accesorio" class="radio">
+             <span>Accesorios</span>
+             <input type="radio" name="filtro" value="total" class="radio">
+             <span>Todos</span>
+         </label>   
+        </div>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th> Imagen</th>
+                    <th> Nombre</th>
+                    <th> Precio</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+            
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 

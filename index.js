@@ -1,32 +1,91 @@
 //Variables
 let productos = [
-    { id: 1, tipo: "consola", nombre: "Xbox One", precio: 400 },
-    { id: 2, tipo: "consola", nombre: "Playstation 4", precio: 450 },
-    { id: 3, tipo: "Joystick", nombre: "Joystick Original", precio: 50 },
-    { id: 4, tipo: "Joystick", nombre: "Joystick Alternativo", precio: 20 },
-    { id: 5, tipo: "Accesorio", nombre: "Auricular con cable", precio: 15 },
-    { id: 6, tipo: "Accesorio", nombre: "Auricular Inalambrico", precio: 30 },
-    { id: 7, tipo: "Accesorio", nombre: "Cable HDMI", precio: 5 },
-    { id: 8, tipo: "Accesorio", nombre: "Baterias", precio: 8 },
-    { id: 9, tipo: "Accesorio", nombre: "Pilas", precio: 15 }
+    { id: 1, tipo: "consola", nombre: "Xbox One", precio: 400 , imagen:"https://m.media-amazon.com/images/I/61zjj2sgXML._SX466_.jpg"},
+    { id: 2, tipo: "consola", nombre: "Playstation 4", precio: 450,imagen:"https://as01.epimg.net/betech/imagenes/2016/09/08/portada/1473285944_323697_1473286252_noticia_normal.jpg"},
+    { id: 3, tipo: "joystick", nombre: "Joystick Original", precio: 50 ,imagen:"https://images.fravega.com/f500/9bf0c5a87ddb069a1a9f14c9854a0e4c.jpg"},
+    { id: 4, tipo: "joystick", nombre: "Joystick Alternativo", precio:20 ,imagen:"https://i.blogs.es/094415/duke1/450_1000.jpg"},
+    { id: 5, tipo: "accesorio", nombre: "Auricular con cable", precio: 15, imagen:"https://hendel-r7d8odghj1.stackpathdns.com/media/catalog/product/cache/0c3e9ac8430b5a3e77d1544ae1698a10/4/2/42066.jpg"},
+    { id: 6, tipo: "accesorio", nombre: "Auricular Inalambrico", precio: 30,imagen:"https://www.tiomusa.com.ar/imagenes/archivos/2020-04/25498-auricularbluetoothf2.jpg"},
+    { id: 7, tipo: "accesorio", nombre: "Cable HDMI", precio: 5 ,imagen:"https://pascalonline.com.ar/wp-content/uploads/2016/08/HDM.jpg"},
+    { id: 8, tipo: "accesorio", nombre: "Baterias", precio: 8 ,imagen:"https://http2.mlstatic.com/D_NQ_NP_859420-MLA46752218757_072021-V.jpg"},
+    { id: 9, tipo: "accesorio", nombre: "Pilas", precio: 15,imagen:"https://www.duracell-la.com/upload/sites/37/2016/07/1010790_rechargeable_rpp-cells_AA-2500mAh_4_primary.png"}
 ];
 
-let carrito = [
-    productos[0], productos[3], productos[6]
-];
+let carrito = [];
+// --------------------------------------------------Filtrado de Productos
+// definimos la variable del Array
+let arrayProductos = productos;
+//Creamos la funcion para la tabla de los productos
+function rellenarTabla(array){
+    // se vacia el tbody para que funcione
+    const tbody = document.getElementById("tbody");
+    tbody.innerHTML = '';
+    // recorremos el array de los productos
+    for(const producto of array){
+        //creando los elementos para el html
+        const tr = document.createElement("tr");
+        // Dentro del tr creamos los td
+        tr.innerHTML = `<td><img src='${producto.imagen}'></td>
+                        <td>${producto.nombre}</td>
+                        <td>${producto.precio}</td>`
+        // subimos todo de nuevo al HTML
+        tbody.appendChild(tr);
+    }
+}
 
-//Eventos
+const storage = JSON.parse(localStorage.getItem("filtro"));
+// verirficamos si estan o no los productos
+if(storage){
+    arrayProductos = storage;
+}
+
+rellenarTabla(arrayProductos);
+
+const inputRadio = document.getElementsByClassName("radio");
+
+for(const input of inputRadio){
+    input.addEventListener("click", filtrarTabla)
+}  // funciona tambien con change o con click sinonimos
+
+function filtrarTabla(evento){
+    let inputValue = evento.target.value.toLowerCase();
+    
+    if(inputValue != "total"){
+        arrayProductos = productos.filter((elemento) => {
+            return elemento.tipo.toLowerCase() === inputValue;
+        })
+    }else{
+        arrayProductos = productos;
+    }
+
+    localStorage.setItem("filtro", JSON.stringify(arrayProductos));
+
+    rellenarTabla(arrayProductos);
+
+}
+
+
+//------------------------------------------------------------Eventos
 //boton admin
 let botonAdmin = document.getElementById("botonAdmin")
 botonAdmin.addEventListener ("click", () => adminClick ())
-botonAdmin.addEventListener ("mouseover", () => botonAdminPrendido)
-//botonAdmin.addEventListener ("mouseout", () => botonAdminApagado)
+botonAdmin.addEventListener("mouseover", () =>{ 
+    botonAdmin.style.background="red"
+})
+botonAdmin.addEventListener("mouseout", () =>{ 
+    botonAdmin.style.background="white"
+})
+
 
 //boton cliente
 let botonCliente = document.getElementById("botonCliente")
 botonCliente.addEventListener ("click", () => clienteClick ())
-botonCliente.addEventListener ("mouseover", () => botonClientePrendido)
-//botonCliente.addEventListener ("mouseout", () => botonClientePrendido)
+botonCliente.addEventListener("mouseover", () =>{ 
+    botonCliente.style.background="red"
+})
+botonCliente.addEventListener("mouseout", () =>{ 
+    botonCliente.style.background="white"
+})
 
 //------------------------------------------------------------Funciones
 
@@ -46,14 +105,14 @@ function adminClick() {
     divLogin.style.display = "block";
 }
 
-
+/*
 function botonClientePrendido () {
     botonCliente.className ="botonprendido"
 }
 function botonClienteApagado () {
     botonCliente.className ="botonapagado"
 }
-
+*/
 function clienteClick() {
     //Buscar div menuLogin
     let divLogin = document.getElementById("cosasDeAdmin");
@@ -130,3 +189,11 @@ function mostrarCarrito() {
     listaDOM.style.display = "block";
 
 }
+
+
+/* Tareas 
+Arreglar el añadir producto 
+Eliminar un producto en especifico
+Modificar el precio de un producto
+
+*/
