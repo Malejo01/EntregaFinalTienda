@@ -10,6 +10,8 @@ table {
     width: 45%;
     text-align: center;
     margin-top: 60px;
+    background-color: green;
+    color: black;
 }
 
 thead{
@@ -22,14 +24,9 @@ thead{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    color: aliceblue;
 }
 
-.botonprendido {
-    color:blue;
-}
-.botonapagado{
-    color:red;    
-}
 .errorMsg{
     color:red;
     font-weight: bold;
@@ -43,11 +40,12 @@ thead{
 }
 
 body {
-    background-color:bisque;
+    background-color:black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     margin: 20px;
+    color: aliceblue;
 }

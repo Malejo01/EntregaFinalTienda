@@ -9,8 +9,16 @@
     <script  defer src="index.js"></script>
     <title>Tienda de Videojuegos</title>
 </head>
+<header>
+    <div>
+        <h1></h1>
+        <p>Tu mejor tienda de videojuegos</p>
+    </div>
+</header>
 
 <body>
+    <p>Elija una opcion</p>
+    <span>Temporalmente para acceder como administrador es cuenta:admin y contraseña: admin</span>
     <div id="botones">
         <button class ="Botoncitos" id="botonAdmin">ADMINISTRADOR</button>
         <button class ="Botoncitos" id="botonCliente">CLIENTE</button>
@@ -28,6 +36,8 @@
             <ul>
                 <li>1- Mostrar productos</li>
                 <li>2- Añadir producto</li>
+                <li>3- Eliminar producto</li>
+                <li>4- Modificar precio</li>
             </ul>
             <input type="text" id="opcionAdminElegida">
             <button onclick="adminOpcionClick()">ELEGIR</button>
