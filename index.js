@@ -12,6 +12,7 @@ let productos = [
 ];
 
 let carrito = [];
+
 // --------------------------------------------------Filtrado de Productos
 // definimos la variable del Array
 let arrayProductos = productos;
@@ -70,7 +71,7 @@ function filtrarTabla(evento){
 let botonAdmin = document.getElementById("botonAdmin")
 botonAdmin.addEventListener ("click", () => adminClick ())
 botonAdmin.addEventListener("mouseover", () =>{ 
-    botonAdmin.style.background="red"
+    botonAdmin.style.background="green"
 })
 botonAdmin.addEventListener("mouseout", () =>{ 
     botonAdmin.style.background="white"
@@ -81,7 +82,7 @@ botonAdmin.addEventListener("mouseout", () =>{
 let botonCliente = document.getElementById("botonCliente")
 botonCliente.addEventListener ("click", () => clienteClick ())
 botonCliente.addEventListener("mouseover", () =>{ 
-    botonCliente.style.background="red"
+    botonCliente.style.background="green"
 })
 botonCliente.addEventListener("mouseout", () =>{ 
     botonCliente.style.background="white"
@@ -89,12 +90,6 @@ botonCliente.addEventListener("mouseout", () =>{
 
 //------------------------------------------------------------Funciones
 
-function botonAdminPrendido () {
-    botonAdmin.className ="botonprendido"
-}
-function botonAdminApagado () {
-    botonAdmin.className ="botonapagado"
-}
 
 function adminClick() {
     let divCliente = document.getElementById("menuCliente");
@@ -105,14 +100,6 @@ function adminClick() {
     divLogin.style.display = "block";
 }
 
-/*
-function botonClientePrendido () {
-    botonCliente.className ="botonprendido"
-}
-function botonClienteApagado () {
-    botonCliente.className ="botonapagado"
-}
-*/
 function clienteClick() {
     //Buscar div menuLogin
     let divLogin = document.getElementById("cosasDeAdmin");
@@ -150,6 +137,12 @@ function adminOpcionClick() {
         case "2": //Agregar producto
             aniadirProducto()
             break;
+        case "3": //eliminar producto
+            eliminarProducto()
+        case "4": //modificar precio de producto
+            modificarPrecio()
+        case "5" : //Descuentos por porcentaje en algun producto
+            descuentos()
         default:
             alert("Opcion no valida");
             break;
@@ -190,10 +183,81 @@ function mostrarCarrito() {
 
 }
 
+function aniadirProducto () {
+    let id=1;
+    if(productos.length>0)
+    {
+       id=productos[productos.length-1].id+1;
+    }
+    let tipo=prompt("Escriba el tipo de producto: - Consola - Joystick - Accesorio - Otro")
+    tipo=tipo.toLowerCase
+    let nombre=prompt("ingrese el nombre del producto");
+    nombre=nombre.toLowerCase
+    let precio = prompt("ingrese el precio en USD");
+    precio=Number(precio)
+    let imagen = prompt("Ingrese el URL o enlace de una imagen de la web")
+    let producto = new Productos(id,tipo,nombre,precio,imagen);
+    productos.push(producto);
+    mostrarProductos() 
+}
+
+function eliminarProducto (){
+    mostrarProductos() 
+    let id= Number(prompt("Ingrese el id del usuario que quiere eliminar"));
+    let encontrado = productos.find((producto)=>producto.id===id);
+
+   if(!encontrado)
+   {
+       alert("Usuario no Encontrado");
+   }
+   else{
+        let index = productos.indexOf(encontrado);
+
+        productos.splice(index,1);
+
+        console.log("Borrar usuario");
+        console.log(usuarios);
+   }}
+
+function modificarPrecio()
+{
+    let id= Number(prompt("Ingrese el id del usuario que quiere modificar"));
+
+    let existe = productos.some((producto)=>producto.id===id);
+
+    if(existe)
+    {
+        let encontrado = productos.find((producto)=>producto.id===id);
+        let nuevoPrecio = prompt("Ingrese el nuevo precio del producto");
+        nuevoPrecio=Number(nuevoPrecio)
+        encontrado.precio = nuevoPrecio;
+
+        alert("Se ha modificado el precio")
+        console.log(productos);
+        mostrarProductos() 
+    }
+    else
+    {
+        alert("Ese producto no fue encontrado")
+    }
+}
+
+class Productos{
+    constructor(id,tipo,nombre,precio,imagen)
+    {
+        this.id=id;
+        this.tipo=tipo;
+        this.nombre=nombre;
+        this.precio=precio;
+        this.imagen=imagen;
+    }
+}
+
 
 /* Tareas 
-Arreglar el añadir producto 
-Eliminar un producto en especifico
+el añadir producto debe mostrarse en DOM y no por Alerts
+Eliminar un producto en especifico debe hacerse por DOM y no por Alert
 Modificar el precio de un producto
-
+El enter debe hacer que  funcione como el boton ELEGIR
+en Cliente debe estar por default el Todos
 */
