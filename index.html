@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <script  defer src="index.js"></script>
+    <script defer src="index.js"></script>
     <title>Tienda de Videojuegos</title>
 </head>
 <header>
@@ -20,8 +20,8 @@
     <p>Elija una opcion</p>
     <span>Temporalmente para acceder como administrador es cuenta:admin y contraseña: admin</span>
     <div id="botones">
-        <button class ="Botoncitos" id="botonAdmin">ADMINISTRADOR</button>
-        <button class ="Botoncitos" id="botonCliente">CLIENTE</button>
+        <button class="Botoncitos" id="botonAdmin">ADMINISTRADOR</button>
+        <button class="Botoncitos" id="botonCliente">CLIENTE</button>
     </div>
     <div id="cosasDeAdmin" style="display: none;">
         <div id="menuLogin">
@@ -37,7 +37,7 @@
                 <li>1- Mostrar productos</li>
                 <li>2- Añadir producto</li>
                 <li>3- Eliminar producto</li>
-                <li>4- Modificar precio</li>
+                <li>4- Modificar producto</li>
             </ul>
             <input type="text" id="opcionAdminElegida">
             <button onclick="adminOpcionClick()">ELEGIR</button>
@@ -47,33 +47,60 @@
 
             </ul>
         </div>
+        <div id="inputModificarProducto" style="display: none; margin-top:10px;">
+            <div>
+                <input type="text" id="idProductoBusqueda" placeholder="ID del producto">
+            </div>
+            <div>
+                <button id="btnModificarId">MODIFICAR</button>
+            </div>
+        </div>
+        <div id="inputsProducto" style="display: none; margin-top:20px;">
+            <div>
+                <input type="text" id="nombreProducto" placeholder="Nombre">
+            </div>
+            <div>
+                <input type="text" id="tipoProducto" placeholder="Tipo">
+            </div>
+            <div>
+                <input type="number" id="precioProducto" placeholder="Precio">
+            </div>
+            <span id="idProducto" style="display:none;"></span>
+            <div>
+                <button id="btnAnadirProducto" style="display: none;">AÑADIR PRODUCTO</button>
+                <button id="btnModificarProducto" style="display: none;">MODIFICAR PRODUCTO</button>
+            </div>
+        </div>
+        <div id="notificacion">
+            <span id="notificacionTexto" style="display: none;"></span>
+        </div>
     </div>
 
     <div id="menuCliente" style="display: none;">
         <h1>Menu para clientes</h1>
         <div id="container-radio">
-         <label> 
-            <input type="radio" name="filtro" value="consola" class="radio">
-             <span>Consolas</span>
-             <input type="radio" name="filtro" value="joystick" class="radio">
-             <span>Joystick</span>
-             <input type="radio" name="filtro" value="accesorio" class="radio">
-             <span>Accesorios</span>
-             <input type="radio" name="filtro" value="total" class="radio">
-             <span>Todos</span>
-         </label>   
+            <label>
+                <input type="radio" name="filtro" value="consola" class="radio">
+                <span>Consolas</span>
+                <input type="radio" name="filtro" value="joystick" class="radio">
+                <span>Joystick</span>
+                <input type="radio" name="filtro" value="accesorio" class="radio">
+                <span>Accesorios</span>
+                <input type="radio" name="filtro" value="total" class="radio">
+                <span>Todos</span>
+            </label>
         </div>
         <div>
             <table>
                 <thead>
-                <tr>
-                    <th> Imagen</th>
-                    <th> Nombre</th>
-                    <th> Precio</th>
-                </tr>
+                    <tr>
+                        <th> Imagen</th>
+                        <th> Nombre</th>
+                        <th> Precio</th>
+                    </tr>
                 </thead>
                 <tbody id="tbody">
-            
+
                 </tbody>
             </table>
         </div>

@@ -88,6 +88,35 @@ botonCliente.addEventListener("mouseout", () =>{
     botonCliente.style.background="white"
 })
 
+let botonAnadirProducto = document.getElementById("btnAnadirProducto");
+botonAnadirProducto.addEventListener("click", () => {
+    let datosProducto = {
+        id:"",
+        nombre: document.getElementById("nombreProducto").value,
+        precio: document.getElementById("precioProducto").value,
+        tipo: document.getElementById("tipoProducto").value
+    }
+    aniadirProducto(datosProducto)
+});
+let botonModificarProducto = document.getElementById("btnModificarProducto");
+botonModificarProducto.addEventListener("click", () => {
+    let datosProducto = {
+        id: document.getElementById("idProducto").value,
+        nombre: document.getElementById("nombreProducto").value,
+        precio: document.getElementById("precioProducto").value,
+        tipo: document.getElementById("tipoProducto").value
+    }
+    modificarProducto(datosProducto)
+});
+
+let botonMostrarCamposModificarProducto = document.getElementById("btnModificarId");
+botonMostrarCamposModificarProducto.addEventListener("click", () => {
+    //Obtenemos id del producto busqueda
+    let idProducto = document.getElementById("idProductoBusqueda").value;
+    modificarProductoPorId(idProducto)
+}
+);
+
 //------------------------------------------------------------Funciones
 
 
@@ -135,20 +164,32 @@ function adminOpcionClick() {
             mostrarProductos()
             break;
         case "2": //Agregar producto
-            aniadirProducto()
+            //aniadirProducto()
+            mostrarInputsProducto(true);
             break;
         case "3": //eliminar producto
             eliminarProducto()
         case "4": //modificar precio de producto
-            modificarPrecio()
-        case "5" : //Descuentos por porcentaje en algun producto
-            descuentos()
+            mostrarInputsModificarProducto();
+            break;
+            //mostrarInputsProducto(false);
+            //modificarPrecio()
         default:
             alert("Opcion no valida");
             break;
     }
 }
 
+function mostrarInputsModificarProducto(){
+    document.getElementById("inputModificarProducto").style.display="block";
+}
+
+function mostrarInputsProducto(estaAgregando){
+    //Mostrar campos de anadir
+    document.getElementById("inputsProducto").style.display = "block";
+    document.getElementById("btnAnadirProducto").style.display = estaAgregando ? "block":"none";
+    document.getElementById("btnModificarProducto").style.display = estaAgregando ? "none":"block";    
+}
 
 function crearElementoLista(producto) {
     let li = document.createElement("li");
@@ -183,12 +224,72 @@ function mostrarCarrito() {
 
 }
 
-function aniadirProducto () {
+function notificar(mensaje){
+    let notificacion = document.getElementById("notificacion");
+    notificacion.innerHTML = mensaje;
+    notificacion.style.display = "block";
+    //Ocultar mensaje luego de 3 segundos
+    setTimeout(() => {
+        notificacion.style.display = "none";
+    }, 3000);
+}
+
+function modificarProductoPorId(id){
+    let producto = null;
+    for (let i = 0; i < productos.length; i++) {
+        if (productos[i].id == id) {
+            producto = productos[i];
+            break;
+        }
+    }
+    if (!producto) {
+        alert("No se encontro el producto")
+    }else{
+        //Seteamos los inputs con la data del producto
+        mostrarInputsProducto(false)
+        document.getElementById("nombreProducto").value = producto.nombre;
+        document.getElementById("precioProducto").value = producto.precio;
+        document.getElementById("tipoProducto").value = producto.tipo;
+        document.getElementById("idProducto").value = producto.id;
+    }
+}
+
+function modificarProducto(producto){
+    document.getElementById("inputsProducto").style.display = "none";
+    document.getElementById("btnModificarProducto").style.display = "none";
+    //Buscamos el producto en productos
+    let pos = null;
+    let productoModificado = null;
+    for (let i = 0; i < productos.length; i++) {
+        if (productos[i].id == producto.id) {
+            pos = i;
+            productoModificado = productos[i];
+            break;
+        }
+    }
+    productoModificado.nombre = producto.nombre;
+    productoModificado.precio = Number(producto.precio);
+    productoModificado.tipo = producto.tipo;
+    productos[pos] = productoModificado;
+    console.log(productos)
+    notificar("Producto modificado");
+
+}
+
+function aniadirProducto (producto) {
+    producto.id = productos.length + 1;
+    productos.push(producto);
+    console.log(productos)
+    notificar("Producto añadido");
+    document.getElementById("inputsProducto").style.display = "none";
+    document.getElementById("btnAnadirProducto").style.display = "none";
+    //Obtener los datos
+    /*
     let id=1;
     if(productos.length>0)
     {
        id=productos[productos.length-1].id+1;
-    }
+    }    
     let tipo=prompt("Escriba el tipo de producto: - Consola - Joystick - Accesorio - Otro")
     tipo=tipo.toLowerCase
     let nombre=prompt("ingrese el nombre del producto");
@@ -197,8 +298,10 @@ function aniadirProducto () {
     precio=Number(precio)
     let imagen = prompt("Ingrese el URL o enlace de una imagen de la web")
     let producto = new Productos(id,tipo,nombre,precio,imagen);
+    
     productos.push(producto);
     mostrarProductos() 
+    */
 }
 
 function eliminarProducto (){
