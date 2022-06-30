@@ -10,7 +10,7 @@ let productos = [
     { id: 8, tipo: "accesorio", nombre: "Baterias", precio: 8 ,imagen:"https://http2.mlstatic.com/D_NQ_NP_859420-MLA46752218757_072021-V.jpg"},
     { id: 9, tipo: "accesorio", nombre: "Pilas", precio: 15,imagen:"https://www.duracell-la.com/upload/sites/37/2016/07/1010790_rechargeable_rpp-cells_AA-2500mAh_4_primary.png"}
 ];
-let carrito = [];
+let carrito = new Carrito([]);
 
 // --------------------------------------------------Filtrado de Productos
 // definimos la variable del Array
@@ -24,12 +24,57 @@ function rellenarTabla(array){
     for(const producto of array){
         //creando los elementos para el html
         const tr = document.createElement("tr");
-        // Dentro del tr creamos los td
-        tr.innerHTML = `<td><img src='${producto.imagen}'></td>
-                        <td>${producto.nombre}</td>
-                        <td>${producto.precio}</td>`
-        // subimos todo de nuevo al HTML
+        //Crear imagen
+        let td = document.createElement("td");
+        let img = document.createElement("img");
+        img.src = producto.imagen
+        td.appendChild(img)
+        tr.appendChild(td)
+
+        //crear Nombre
+        let tdNombre = document.createElement("td")
+        let spanNombre= document.createElement("span");
+        spanNombre.innerHTML= producto.nombre
+        tdNombre.appendChild(spanNombre)
+        tr.appendChild(tdNombre)
+
+        //crear Precio
+        let tdPrecio = document.createElement("td")
+        let spanPrecio= document.createElement("span");
+        spanPrecio.innerHTML= producto.precio
+        tdPrecio.appendChild(spanPrecio)
+        tr.appendChild(tdPrecio)
+        // crear boton de Agregar
+        let tdAgregar = document.createElement("td")
+        let botonAgregar =document.createElement("button")
+        botonAgregar.innerHTML="Agregar"
+        botonAgregar.addEventListener('click', ()=>{
+            const productoParaCarrito = {
+                ...producto, 
+                cantidad:1,
+            }
+            carrito.agregarProducto(productoParaCarrito)
+            console.log(carrito);
+        })
+        tr.appendChild(botonAgregar)
+        // crear boton de Quitar
+        let tdQuitar = document.createElement("td")
+        let botonQuitar = document.createElement("button")
+        botonQuitar.innerHTML="Quitar"
+        botonQuitar.addEventListener ('click', ()=>{
+            const productoParaCarrito ={
+                ...producto,
+            }
+            if (producto.cantidad<=1){
+                borrarProducto()
+            }
+            else{
+                producto.cantidad=producto.cantidad-1
+            }
+        })
         tbody.appendChild(tr);
+        tbody.appendChild(botonQuitar);
+        console.log(carrito);
     }
 }
 
@@ -70,11 +115,7 @@ function filtrarTabla(evento){
 
 
 
-
 /* Tareas 
-el añadir producto debe mostrarse en DOM y no por Alerts
 Eliminar un producto en especifico debe hacerse por DOM y no por Alert
-Modificar el precio de un producto
 El enter debe hacer que  funcione como el boton ELEGIR
-en Cliente debe estar por default el Todos
 */
