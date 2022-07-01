@@ -168,25 +168,6 @@ function aniadirProducto (producto) {
     notificar("Producto añadido");
     document.getElementById("inputsProducto").style.display = "none";
     document.getElementById("btnAnadirProducto").style.display = "none";
-    //Obtener los datos
-    /*
-    let id=1;
-    if(productos.length>0)
-    {
-       id=productos[productos.length-1].id+1;
-    }    
-    let tipo=prompt("Escriba el tipo de producto: - Consola - Joystick - Accesorio - Otro")
-    tipo=tipo.toLowerCase
-    let nombre=prompt("ingrese el nombre del producto");
-    nombre=nombre.toLowerCase
-    let precio = prompt("ingrese el precio en USD");
-    precio=Number(precio)
-    let imagen = prompt("Ingrese el URL o enlace de una imagen de la web")
-    let producto = new Productos(id,tipo,nombre,precio,imagen);
-    
-    productos.push(producto);
-    mostrarProductos() 
-    */
 }
 
 function eliminarProducto (){
@@ -239,4 +220,22 @@ class Productos{
         this.precio=precio;
         this.imagen=imagen;
     }
+}
+
+class Carrito {
+    constructor(id,tipo,nombre,precio,imagen)
+    {
+        this.id=id;
+        this.tipo=tipo;
+        this.nombre=nombre;
+        this.precio=precio;
+        this.imagen=imagen;
+    }
+}
+// -----------------------------------------------------Carrito
+
+
+function agregarProducto (producto) {
+        carrito.push(producto);
+        console.log(carrito)
 }

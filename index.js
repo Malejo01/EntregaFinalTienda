@@ -10,8 +10,7 @@ let productos = [
     { id: 8, tipo: "accesorio", nombre: "Baterias", precio: 8 ,imagen:"https://http2.mlstatic.com/D_NQ_NP_859420-MLA46752218757_072021-V.jpg"},
     { id: 9, tipo: "accesorio", nombre: "Pilas", precio: 15,imagen:"https://www.duracell-la.com/upload/sites/37/2016/07/1010790_rechargeable_rpp-cells_AA-2500mAh_4_primary.png"}
 ];
-let carrito = new Carrito([]);
-
+let carrito =([])
 // --------------------------------------------------Filtrado de Productos
 // definimos la variable del Array
 let arrayProductos = productos;
@@ -44,37 +43,27 @@ function rellenarTabla(array){
         spanPrecio.innerHTML= producto.precio
         tdPrecio.appendChild(spanPrecio)
         tr.appendChild(tdPrecio)
-        // crear boton de Agregar
-        let tdAgregar = document.createElement("td")
-        let botonAgregar =document.createElement("button")
+        //Crear Boton Agregar
+        let tdBotonAgregar=document.createElement("td")
+        let botonAgregar=document.createElement("button")
+        botonAgregar.setAttribute("id", "botonAgregar");
         botonAgregar.innerHTML="Agregar"
-        botonAgregar.addEventListener('click', ()=>{
-            const productoParaCarrito = {
-                ...producto, 
-                cantidad:1,
-            }
-            carrito.agregarProducto(productoParaCarrito)
-            console.log(carrito);
+        botonAgregar.addEventListener("click", () => {
+            agregarProducto ()
         })
-        tr.appendChild(botonAgregar)
-        // crear boton de Quitar
-        let tdQuitar = document.createElement("td")
-        let botonQuitar = document.createElement("button")
-        botonQuitar.innerHTML="Quitar"
-        botonQuitar.addEventListener ('click', ()=>{
-            const productoParaCarrito ={
-                ...producto,
-            }
-            if (producto.cantidad<=1){
-                borrarProducto()
-            }
-            else{
-                producto.cantidad=producto.cantidad-1
-            }
-        })
+        tdBotonAgregar.appendChild(botonAgregar)
+        tr.appendChild(tdBotonAgregar)
+
+        //Crear Boton Quitar
+        /*
+        let tdBotonQuitar=document.createElement("td")
+        let botonQuitar=document.createElement("button")
+        botonAgregar.innerHTML="Quitar"
+        tdBotonAgregar.appendChild(botonQuitar)
+        tr.appendChild(tdBotonQuitar)
+        */
+    // subo todo a la fila
         tbody.appendChild(tr);
-        tbody.appendChild(botonQuitar);
-        console.log(carrito);
     }
 }
 
