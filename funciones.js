@@ -179,9 +179,12 @@ function eliminarProducto (){
     listaDOM.innerHTML = "";
     mostrarProductos() 
     //crear dom para eliminar producto
-    document.getElementById("idProducto").style.display="block";
-    document.createElement("button")
-    documen
+    /*
+    creo elemento de html
+    asigno atributo id = a 
+    busco el id recien creado
+    
+    document.getElementById("").style.display="block";
     //pedir input id de producto
 
     /*let id= Number(prompt("Ingrese el id del usuario que quiere eliminar"));*/
@@ -256,13 +259,15 @@ function agregarProducto (producto) {
 
 function mostrarCarrito()
 {
+    let divCarrito= document.getElementById("divCarrito")
     divCarrito.innerHTML="";
-    productos.forEach(producto=>{
+    carrito.forEach(producto=>{
+        //crear img
          let div = document.createElement("div");
-        div.innerHTML=`
-            <img src='${producto.imagen}' width="20px"/><br/>
-            ${producto.nombre}<br/>
-            $${producto.precio}<br/>`
-})
-divCarrito.appendChild(div)
+        let img = document.createElement("img")
+        img.src=producto.imagen
+        div.appendChild(img)
+        //
+        divCarrito.appendChild(div)
+    })
 }

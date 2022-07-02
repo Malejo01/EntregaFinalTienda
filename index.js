@@ -10,7 +10,7 @@ let productos = [
     { id: 8, tipo: "accesorio", nombre: "Baterias", precio: 8 ,imagen:"https://http2.mlstatic.com/D_NQ_NP_859420-MLA46752218757_072021-V.jpg"},
     { id: 9, tipo: "accesorio", nombre: "Pilas", precio: 15,imagen:"https://www.duracell-la.com/upload/sites/37/2016/07/1010790_rechargeable_rpp-cells_AA-2500mAh_4_primary.png"}
 ];
-let carrito =([])
+let carrito =[]
 // --------------------------------------------------Filtrado de Productos
 // definimos la variable del Array
 let arrayProductos = productos;
@@ -105,6 +105,7 @@ function filtrarTabla(evento){
 
 
 /* Tareas 
+al añadir un producto se tiene que agregar tyambien una imagen por URL
 Eliminar un producto en especifico debe hacerse por DOM y no por Alert
 El enter debe hacer que  funcione como el boton ELEGIR
 */
