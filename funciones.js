@@ -4,7 +4,7 @@ fetch('/data.json')
     .then( (data) => {console.log(data)
 })
 
-
+// --------------------------------------------------displays
 function adminClick() {
     let divCliente = document.getElementById("menuCliente");
     divCliente.style.display = "none";
@@ -54,6 +54,7 @@ function adminOpcionClick() {
             break;
         case "3": //eliminar producto
             eliminarProducto()
+            break;
         case "4": //modificar precio de producto
             mostrarInputsModificarProducto();
             break;
@@ -66,11 +67,14 @@ function adminOpcionClick() {
 }
 
 function mostrarInputsModificarProducto(){
+    let listaDOM = document.getElementById("lista");
+    listaDOM.innerHTML = "";
     document.getElementById("inputModificarProducto").style.display="block";
 }
 
 function mostrarInputsProducto(estaAgregando){
     //Mostrar campos de anadir
+    let listaDOM = document.getElementById("lista"); listaDOM.innerHTML = "";
     document.getElementById("inputsProducto").style.display = "block";
     document.getElementById("btnAnadirProducto").style.display = estaAgregando ? "block":"none";
     document.getElementById("btnModificarProducto").style.display = estaAgregando ? "none":"block";    
@@ -171,21 +175,31 @@ function aniadirProducto (producto) {
 }
 
 function eliminarProducto (){
+    let listaDOM = document.getElementById("lista");
+    listaDOM.innerHTML = "";
     mostrarProductos() 
-    let id= Number(prompt("Ingrese el id del usuario que quiere eliminar"));
+    //crear dom para eliminar producto
+    document.getElementById("idProducto").style.display="block";
+    document.createElement("button")
+    documen
+    //pedir input id de producto
+
+    /*let id= Number(prompt("Ingrese el id del usuario que quiere eliminar"));*/
     let encontrado = productos.find((producto)=>producto.id===id);
 
    if(!encontrado)
    {
-       alert("Usuario no Encontrado");
+       alert("Producto no Encontrado");
    }
    else{
         let index = productos.indexOf(encontrado);
 
         productos.splice(index,1);
-
-        console.log("Borrar usuario");
-        console.log(usuarios);
+        alert("Producto Borrado");
+        //mostrar resultados
+        let listaDOM = document.getElementById("lista");
+        listaDOM.innerHTML = "";
+        mostrarProductos()
    }}
 
 function modificarPrecio()
@@ -237,5 +251,18 @@ class Carrito {
 
 function agregarProducto (producto) {
         carrito.push(producto);
-        console.log(carrito)
+        mostrarCarrito()
+}
+
+function mostrarCarrito()
+{
+    divCarrito.innerHTML="";
+    productos.forEach(producto=>{
+         let div = document.createElement("div");
+        div.innerHTML=`
+            <img src='${producto.imagen}' width="20px"/><br/>
+            ${producto.nombre}<br/>
+            $${producto.precio}<br/>`
+})
+divCarrito.appendChild(div)
 }
