@@ -53,15 +53,6 @@ function rellenarTabla(array){
         })
         tdBotonAgregar.appendChild(botonAgregar)
         tr.appendChild(tdBotonAgregar)
-
-        //Crear Boton Quitar
-        /*
-        let tdBotonQuitar=document.createElement("td")
-        let botonQuitar=document.createElement("button")
-        botonAgregar.innerHTML="Quitar"
-        tdBotonAgregar.appendChild(botonQuitar)
-        tr.appendChild(tdBotonQuitar)
-        */
     // subo todo a la fila
         tbody.appendChild(tr);
     }

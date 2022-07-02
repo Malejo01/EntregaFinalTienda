@@ -183,7 +183,7 @@ function eliminarProducto (){
     creo elemento de html
     asigno atributo id = a 
     busco el id recien creado
-    
+
     document.getElementById("").style.display="block";
     //pedir input id de producto
 
@@ -262,12 +262,36 @@ function mostrarCarrito()
     let divCarrito= document.getElementById("divCarrito")
     divCarrito.innerHTML="";
     carrito.forEach(producto=>{
-        //crear img
+        //crear div
          let div = document.createElement("div");
-        let img = document.createElement("img")
+         
+         //crear elementos
+         let img = document.createElement("img")
         img.src=producto.imagen
         div.appendChild(img)
-        //
+        divCarrito.appendChild(div)
+
+        let nombre =document.createElement("span")
+        nombre.innerHTML = producto.nombre
+        div.appendChild(nombre)
+
+        let precio=document.createElement("span")
+        precio.innerHTML=producto.precio
+        div.appendChild(precio)
+        //Crear Boton Quitar
+        let botonQuitar=document.createElement("button")
+        botonQuitar.innerHTML="Quitar"
+        div.appendChild(botonQuitar)
+        //evento boton quitar
+        botonQuitar.addEventListener("click", () =>{
+            eliminarProductoCarrito(producto)
+        } )
+        // subo todo
         divCarrito.appendChild(div)
     })
+}
+
+function eliminarProductoCarrito(producto) {
+    carrito.splice(producto,1);
+    mostrarCarrito();
 }
