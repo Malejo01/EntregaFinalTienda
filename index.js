@@ -49,7 +49,7 @@ function rellenarTabla(array){
         botonAgregar.setAttribute("id", "botonAgregar");
         botonAgregar.innerHTML="Agregar"
         botonAgregar.addEventListener("click", () => {
-            agregarProducto ()
+            agregarProducto (producto)
         })
         tdBotonAgregar.appendChild(botonAgregar)
         tr.appendChild(tdBotonAgregar)
