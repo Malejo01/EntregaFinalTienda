@@ -49,7 +49,7 @@ function adminOpcionClick() {
             mostrarProductos()
             break;
         case "2": //Agregar producto
-            //aniadirProducto()
+            aniadirProducto()
             mostrarInputsProducto(true);
             break;
         case "3": //eliminar producto
@@ -140,6 +140,7 @@ function modificarProductoPorId(id){
         document.getElementById("precioProducto").value = producto.precio;
         document.getElementById("tipoProducto").value = producto.tipo;
         document.getElementById("idProducto").value = producto.id;
+        document.getElementById("imagenProducto").value = producto.imagen;
     }
 }
 
@@ -159,6 +160,7 @@ function modificarProducto(producto){
     productoModificado.nombre = producto.nombre;
     productoModificado.precio = Number(producto.precio);
     productoModificado.tipo = producto.tipo;
+    productoModificado.imagen = producto.imagen;
     productos[pos] = productoModificado;
     console.log(productos)
     notificar("Producto modificado");
@@ -205,28 +207,6 @@ function eliminarProducto (){
         mostrarProductos()
    }}
 
-function modificarPrecio()
-{
-    let id= Number(prompt("Ingrese el id del usuario que quiere modificar"));
-
-    let existe = productos.some((producto)=>producto.id===id);
-
-    if(existe)
-    {
-        let encontrado = productos.find((producto)=>producto.id===id);
-        let nuevoPrecio = prompt("Ingrese el nuevo precio del producto");
-        nuevoPrecio=Number(nuevoPrecio)
-        encontrado.precio = nuevoPrecio;
-
-        alert("Se ha modificado el precio")
-        console.log(productos);
-        mostrarProductos() 
-    }
-    else
-    {
-        alert("Ese producto no fue encontrado")
-    }
-}
 
 class Productos{
     constructor(id,tipo,nombre,precio,imagen)
@@ -313,4 +293,9 @@ function calcularTotal() {
     })
     let spanTotalCarrito= document.getElementById("totalCarrito")
     spanTotalCarrito.innerHTML="Total: $"+ totalCarrito
+    //boton de comprar
+    if (totalCarrito!==0) {
+    let botonPagar=document.createElement("button")
+    botonPagar.innerHTML="Comprar"
+    spanTotalCarrito.appendChild(botonPagar)}
 }

@@ -96,7 +96,12 @@ function filtrarTabla(evento){
 
 
 /* Tareas 
-al añadir un producto se tiene que agregar tyambien una imagen por URL
+al añadir un producto se tiene que agregar tambien una imagen por URL
 Eliminar un producto en especifico debe hacerse por DOM y no por Alert
 El enter debe hacer que  funcione como el boton ELEGIR
+carrito en formato de tablas
+el carrito de comprar se debe mostrar en un lado, y con imagenes mas chicas
+el boton de comprar puede llevar a una nueva pestaña de compras
+los botones dentro de productos y de carrito deben tener efectos mouseover (negro?)
+
 */

@@ -36,7 +36,8 @@ botonModificarProducto.addEventListener("click", () => {
         id: document.getElementById("idProducto").value,
         nombre: document.getElementById("nombreProducto").value,
         precio: document.getElementById("precioProducto").value,
-        tipo: document.getElementById("tipoProducto").value
+        tipo: document.getElementById("tipoProducto").value,
+        imagen: document.getElementById("imagenProducto").value
     }
     modificarProducto(datosProducto)
 });
