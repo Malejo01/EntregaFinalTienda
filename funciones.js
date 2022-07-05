@@ -184,7 +184,7 @@ function eliminarProducto (){
 
     //crear dom para eliminar producto
     let inputEliminar=document.createElement("input")
-    inputEliminar.setAttribute("type","text")
+    inputEliminar.setAttribute("type","Number")
     inputEliminar.setAttribute("id","idProducto")
     inputEliminar.setAttribute("placeholder","Id")
     let botonEliminar= document.createElement("button")
@@ -194,8 +194,7 @@ function eliminarProducto (){
     // eliminar producto
     botonEliminar.addEventListener("click", () => {
         //encontrar el producto
-        encontrado=inputEliminar.innerHTML
-
+        id=inputEliminar.innerHTML
         let encontrado = productos.find((producto)=>producto.id===id);
         if(!encontrado) {
             alert("Producto no encontrado")
