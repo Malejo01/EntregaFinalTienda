@@ -49,7 +49,7 @@ function adminOpcionClick() {
             mostrarProductos()
             break;
         case "2": //Agregar producto
-            aniadirProducto()
+            //aniadirProducto()
             mostrarInputsProducto(true);
             break;
         case "3": //eliminar producto
@@ -69,6 +69,7 @@ function adminOpcionClick() {
 function mostrarInputsModificarProducto(){
     let listaDOM = document.getElementById("lista");
     listaDOM.innerHTML = "";
+    mostrarProductos()
     document.getElementById("inputModificarProducto").style.display="block";
 }
 
@@ -180,24 +181,27 @@ function eliminarProducto (){
     let listaDOM = document.getElementById("lista");
     listaDOM.innerHTML = "";
     mostrarProductos() 
+
     //crear dom para eliminar producto
-    /*
-    creo elemento de html
-    asigno atributo id = a 
-    busco el id recien creado
+    let inputEliminar=document.createElement("input")
+    inputEliminar.setAttribute("type","text")
+    inputEliminar.setAttribute("id","idProducto")
+    inputEliminar.setAttribute("placeholder","Id")
+    let botonEliminar= document.createElement("button")
+    botonEliminar.innerHTML="Eliminar"
+    listaDOM.appendChild(inputEliminar)
+    listaDOM.appendChild(botonEliminar)
+    // eliminar producto
+    botonEliminar.addEventListener("click", () => {
+        //encontrar el producto
+        encontrado=inputEliminar.innerHTML
 
-    document.getElementById("").style.display="block";
-    //pedir input id de producto
-
-    /*let id= Number(prompt("Ingrese el id del usuario que quiere eliminar"));*/
-    let encontrado = productos.find((producto)=>producto.id===id);
-
-   if(!encontrado)
-   {
-       alert("Producto no Encontrado");
-   }
-   else{
-        let index = productos.indexOf(encontrado);
+        let encontrado = productos.find((producto)=>producto.id===id);
+        if(!encontrado) {
+            alert("Producto no encontrado")
+        }
+        else{
+            let index = productos.indexOf(encontrado);
 
         productos.splice(index,1);
         alert("Producto Borrado");
@@ -205,9 +209,10 @@ function eliminarProducto (){
         let listaDOM = document.getElementById("lista");
         listaDOM.innerHTML = "";
         mostrarProductos()
-   }}
-
-
+        }
+    })}
+    
+    
 class Productos{
     constructor(id,tipo,nombre,precio,imagen)
     {
@@ -294,8 +299,15 @@ function calcularTotal() {
     let spanTotalCarrito= document.getElementById("totalCarrito")
     spanTotalCarrito.innerHTML="Total: $"+ totalCarrito
     //boton de comprar
-    if (totalCarrito!==0) {
+    if (totalCarrito!==0) 
+{
     let botonPagar=document.createElement("button")
     botonPagar.innerHTML="Comprar"
-    spanTotalCarrito.appendChild(botonPagar)}
+    spanTotalCarrito.appendChild(botonPagar)
+    botonPagar.addEventListener("click", () =>{
+        let enlacePago= document.createElement("a")
+        enlacePago.setAttribute("href","https://www.mercadopago.com.ar/")
+        enlacePago.setAttribute("target","_blank")
+    })
+}    
 }
