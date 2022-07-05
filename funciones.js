@@ -185,7 +185,7 @@ function eliminarProducto (){
     //crear dom para eliminar producto
     let inputEliminar=document.createElement("input")
     inputEliminar.setAttribute("type","Number")
-    inputEliminar.setAttribute("id","idProducto")
+    inputEliminar.setAttribute("id","idProductoAEliminar")
     inputEliminar.setAttribute("placeholder","Id")
     let botonEliminar= document.createElement("button")
     botonEliminar.innerHTML="Eliminar"
@@ -194,8 +194,8 @@ function eliminarProducto (){
     // eliminar producto
     botonEliminar.addEventListener("click", () => {
         //encontrar el producto
-        id=inputEliminar.innerHTML
-        let encontrado = productos.find((producto)=>producto.id===id);
+        let id=inputEliminar.value
+        let encontrado = productos.find((producto)=>producto.id==id);
         if(!encontrado) {
             alert("Producto no encontrado")
         }
@@ -303,10 +303,12 @@ function calcularTotal() {
     let botonPagar=document.createElement("button")
     botonPagar.innerHTML="Comprar"
     spanTotalCarrito.appendChild(botonPagar)
+
     botonPagar.addEventListener("click", () =>{
         let enlacePago= document.createElement("a")
         enlacePago.setAttribute("href","https://www.mercadopago.com.ar/")
         enlacePago.setAttribute("target","_blank")
+        enlacePago.click()
     })
 }    
 }
