@@ -1,4 +1,4 @@
-//------------------------------------------------------------Eventos
+//------------------------------------------------------------------Eventos
 //boton admin
 let botonAdmin = document.getElementById("botonAdmin")
 botonAdmin.addEventListener ("click", () => adminClick ())
