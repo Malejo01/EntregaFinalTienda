@@ -4,7 +4,7 @@ fetch('/data.json')
     .then( (data) => {console.log(data)
 })
 
-// --------------------------------------------------displays
+// ------------------------------------------------------------------------displays
 function adminClick() {
     let divCliente = document.getElementById("menuCliente");
     divCliente.style.display = "none";
@@ -40,7 +40,7 @@ function loginClick() {
         document.getElementById("errorLogin").style.display = "block";
     }
 }
-
+//------------------------------------------------------------------------opciones administrador
 function adminOpcionClick() {
     //Obtener opcion elegida
     let opcion = document.getElementById("opcionAdminElegida").value;
@@ -233,7 +233,7 @@ class Carrito {
         this.imagen=imagen;
     }
 }
-// -----------------------------------------------------Carrito
+// ---------------------------------------------------------------------------------Carrito
 
 function agregarProducto (producto) {
         carrito.push(producto);

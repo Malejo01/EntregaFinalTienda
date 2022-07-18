@@ -70,8 +70,10 @@ let productos = [
       "https://www.duracell-la.com/upload/sites/37/2016/07/1010790_rechargeable_rpp-cells_AA-2500mAh_4_primary.png",
   },
 ];
+
 let carrito = [];
-// --------------------------------------------------Filtrado de Productos
+
+// ---------------------------------------------------------------Filtrado de Productos - Opciones Cliente
 // definimos la variable del Array
 let arrayProductos = productos;
 //Creamos la funcion para la tabla de los productos
@@ -150,12 +152,8 @@ function filtrarTabla(evento) {
 
 //------------------------------------------------------------Funciones
 
-/* Tareas 
-Eliminar un producto en no encuentra el producto  - funciones.js linea 197
-el boton de comprar puede llevar a una nueva pestaña de compras funciones.js linea 307
-El enter debe hacer que  funcione como el boton ELEGIR
 
-//---------------------------------------------------------Esteticos
+/*---------------------------------------------------------Esteticos
 carrito en formato de tablas
 el carrito de comprar se debe mostrar en un lado, y con imagenes mas chicas
 los botones dentro de productos y de carrito deben tener efectos mouseover (negro?)
